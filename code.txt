@@ -1,0 +1,160 @@
+interface SearchStrategy {
+    List<Flight> search(List<Flight> flights);
+}
+
+class SearchByPrice implements SearchStrategy {
+    public List<Flight> search(List<Flight> flights) {
+        // Sort and return flights by price
+        return flights.stream().sorted(Comparator.comparingDouble(Flight::getPrice)).collect(Collectors.toList());
+    }
+}
+
+class SearchByDeparture implements SearchStrategy {
+    public List<Flight> search(List<Flight> flights) {
+        // Sort and return flights by departure time
+        return flights.stream().sorted(Comparator.comparing(Flight::getDepartureTime)).collect(Collectors.toList());
+    }
+}
+
+class SearchByDuration implements SearchStrategy {
+    public List<Flight> search(List<Flight> flights) {
+        // Sort and return flights by duration
+        return flights.stream().sorted(Comparator.comparingInt(Flight::getDuration)).collect(Collectors.toList());
+    }
+}
+
+class FlightSearchContext {
+    private SearchStrategy strategy;
+
+    public void setStrategy(SearchStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public List<Flight> executeSearch(List<Flight> flights) {
+        return strategy.search(flights);
+    }
+}
+
+
+
+
+abstract class AirlineComponent {
+    public void add(AirlineComponent component) {
+        throw new UnsupportedOperationException();
+    }
+    public void remove(AirlineComponent component) {
+        throw new UnsupportedOperationException();
+    }
+    public List<Flight> getFlights() {
+        throw new UnsupportedOperationException();
+    }
+    public String getName() {
+        throw new UnsupportedOperationException();
+    }
+}
+
+class Airline extends AirlineComponent {
+    private List<AirlineComponent> components = new ArrayList<>();
+    private String name;
+
+    public Airline(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void add(AirlineComponent component) {
+        components.add(component);
+    }
+
+    @Override
+    public void remove(AirlineComponent component) {
+        components.remove(component);
+    }
+
+    @Override
+    public List<Flight> getFlights() {
+        List<Flight> flights = new ArrayList<>();
+        for (AirlineComponent component : components) {
+            flights.addAll(component.getFlights());
+        }
+        return flights;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+}
+
+class Flight extends AirlineComponent {
+    private String id;
+    private double price;
+    private LocalDateTime departureTime;
+    private int duration; // in minutes
+
+    public Flight(String id, double price, LocalDateTime departureTime, int duration) {
+        this.id = id;
+        this.price = price;
+        this.departureTime = departureTime;
+        this.duration = duration;
+    }
+
+    @Override
+    public List<Flight> getFlights() {
+        return List.of(this);
+    }
+
+    // Getters
+    public String getId() { return id; }
+    public double getPrice() { return price; }
+    public LocalDateTime getDepartureTime() { return departureTime; }
+    public int getDuration() { return duration; }
+}
+
+
+
+
+
+interface Observer {
+    void update(String message);
+}
+
+interface Subject {
+    void addObserver(Observer observer);
+    void removeObserver(Observer observer);
+    void notifyObservers(String message);
+}
+
+class FlightAlertSystem implements Subject {
+    private List<Observer> observers = new ArrayList<>();
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(String message) {
+        for (Observer observer : observers) {
+            observer.update(message);
+        }
+    }
+}
+
+class Passenger implements Observer {
+    private String name;
+
+    public Passenger(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void update(String message) {
+        System.out.println(name + " received update: " + message);
+    }
+}
