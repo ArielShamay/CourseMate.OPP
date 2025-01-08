@@ -1,0 +1,57 @@
+# OPP Finale Project
+
+## Overview
+This project demonstrates advanced principles of **Object-Oriented Programming (OOP)** by implementing a **Course Registration System**.
+The system is designed to manage course definitions, student enrollment, notifications, and more, using OOP concepts and various design patterns.
+
+---
+
+## Key Features
+- **Course Management**: Add, remove, and manage courses.
+- **Student Enrollment**: Enroll students in courses with different strategies.
+- **Notifications System**: Notify students about course updates (e.g., availability, schedule changes).
+- **CLI Interface**: User-friendly Command-Line Interface for interaction.
+- **Design Patterns**:
+  - **Strategy Pattern**: For flexible enrollment strategies.
+  - **Composite Pattern**: To manage course hierarchies.
+  - **Observer Pattern**: For notifications.
+  - **Factory Pattern**: For dynamic course creation.
+  - **Singleton Pattern**: Ensures a single instance of the registration system.
+
+---
+
+## Technologies Used
+- **Java**: Core programming language.
+- **JUnit**: For unit testing.
+- **Maven** (optional): Dependency and build management.
+
+---
+
+## Structure
+The project is divided into multiple components:
+1. **Models**:
+   - `Course` (Abstract and Types: Seminar, Elective, Mandatory)
+   - `Participant` (Types: Student, Lecturer, Practitioner)
+2. **Patterns**:
+   - Strategy: `EnrollmentStrategy` with `StandardEnrollment` and `FastTrackEnrollment`.
+   - Composite: `AirlineComponent`, `Airline`, `Flight`.
+   - Observer: `CourseAvailabilityNotifier`, `CourseObserver`.
+   - Command: Actions like adding a course to cart or requesting notifications.
+   - Factory: `CourseFactory` for dynamic course creation.
+3. **Controller**:
+   - `RegistrationSystem`: Centralized singleton for managing courses.
+4. **CLI**:
+   - `CourseRegistrationCLI`: Command-line interaction.
+
+---
+
+## Getting Started
+
+### Prerequisites
+- **Java 8+**
+- Optional: **Maven** for build management.
+
+### Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ArielShamay/OPP_finale.git
