@@ -1,1 +1,103 @@
+# CourseMate.OPP - Advanced Course Registration System
+
+### Ariel Shamay 
+**Email:** [arielsh49@gmail.com](mailto:arielsh49@gmail.com)   
+**LinkedIn:** [https://www.linkedin.com/in/ariel-shamay-78011a2b0](https://www.linkedin.com/in/ariel-shamay-78011a2b0)
+
+---
+
+## Project Overview
+
+**CourseMate.OPP** is a Java-based application designed to showcase advanced principles of **Object-Oriented Programming (OOP)** through a robust and scalable course registration system. It efficiently manages course definitions, student enrollments, and notifications, utilizing a variety of established OOP design patterns.
+
+---
+
+## Main Features
+
+- **Course Management**: Create, update, and manage different types of courses (Seminars, Electives, Mandatory).
+- **Student Enrollment**: Flexible student enrollment options using multiple strategies.
+- **Notifications System**: Real-time notifications to inform students of course updates and availability changes.
+- **CLI Interface**: User-friendly Command-Line Interface for intuitive interaction.
+
+---
+
+## Implemented Design Patterns
+
+- **Singleton Pattern**: Ensures a single, centralized instance of the registration system.
+- **Strategy Pattern**: Provides flexible enrollment methods adaptable at runtime.
+- **Observer Pattern**: Implements notifications and updates to users about course changes.
+- **Factory Pattern**: Facilitates dynamic creation and management of course objects.
+- **Composite Pattern**: Manages structured hierarchies within course definitions.
+
+---
+
+## Project Structure
+
+- **Models**:
+  - `Course`: Abstract class defining common behavior for different course types (Seminar, Elective, Mandatory).
+  - `Participant`: Defines different types of participants (Student, Lecturer, Practitioner).
+
+- **Design Patterns & Functionalities**:
+  - **Strategy**: Enrollment strategies (`StandardEnrollment`, `FastTrackEnrollment`).
+  - **Factory**: `CourseFactory` for creating course instances dynamically.
+  - **Observer**: Notification mechanisms (`CourseAvailabilityNotifier`, `CourseObserver`).
+  - **Command**: Executable actions (e.g., adding courses, notifications).
+
+- **Controller**:
+  - `RegistrationSystem`: Singleton class managing overall course and user operations.
+
+- **CLI**:
+  - `CourseRegistrationCLI`: Interface for interacting with the system via the command line.
+
+---
+
+## Getting Started
+
+### Requirements
+
+- **Java 8 or higher**
+- Optional: **Maven** for dependency and build management
+
+### Installation & Execution
+
+Clone the repository and navigate to the project directory:
+
+```bash
+git clone https://github.com/ArielShamay/OPP_finale.git
+cd CourseMate.OPP
+```
+
+Compile and run the application:
+
+```bash
+javac *.java
+java CourseRegistrationCLI
+```
+
+Run tests using JUnit:
+
+```bash
+javac -cp .:junit.jar *.java
+java -cp .:junit.jar org.junit.runner.JUnitCore <TestClassName>
+```
+
+---
+
+## Testing
+
+- Comprehensive unit testing using **JUnit** ensures the reliability and accuracy of the application.
+
+---
+
+## Technologies & Tools
+
+- **Java**
+- **JUnit**
+- **Maven** (optional)
+
+---
+
+## Notes
+
+Make sure Java and JUnit are installed and correctly configured in your system for smooth execution and testing.
 
